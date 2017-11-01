@@ -1,0 +1,115 @@
+:host {
+    width: 100vw;
+    height: 100vh;
+    font-size: 1.2em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.topbar {
+    height: 5%;
+    width: 100%;
+    background-color: #466160;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.content {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    
+}
+
+.recogButton {
+    margin: 2em auto;
+    position: relative;
+    height: 3em;
+    left: calc(50% - 7.5em);
+    background-color: #c6d6d5;
+    border-radius: 20px;
+}
+
+.recogButton:hover {
+    background-color: #cfdfde;    
+}
+
+.selectFile {
+    display: none;
+}
+
+.inner {
+    width: 700px;
+    height: auto;
+    background-color: #EEE;
+    padding: 5em;
+    border-radius: 15px;
+    position: relative;
+}
+
+.footer {
+    height: 5%;
+    width: 100%;
+    background-color: #466160;
+}
+
+.selectImage {
+    width: 100%;
+    display: flex;
+}
+
+.preview {
+    margin: auto;
+    height: 300px;
+    width: 300px;
+    background-color: #AAA;
+    height: 0;
+    display: none;
+}
+
+.address {
+    width: auto;
+    flex: 1;
+}
+
+.resultArea {
+    padding-top: 1em;
+    // display: none;
+}
+
+.result {
+    margin-top: 2em;
+}
+
+h2 {
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.label {
+    margin-top: 0em;
+    line-height: 1.5em;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.result-label {
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+.taccuracy {
+    font-size: 0.85em;
+    margin: auto;
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+}
+

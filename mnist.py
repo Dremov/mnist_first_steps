@@ -8,7 +8,6 @@ from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.utils import np_utils
 from keras.layers import Convolution2D, MaxPooling2D
 from keras import backend as K
-
 K.set_image_dim_ordering('th')
 
 """
@@ -16,8 +15,7 @@ Loosely inspired by http://abel.ee.ucla.edu/cvxopt/_downloads/mnist.py
 which is GPL licensed.
 """
 
-
-def read(dataset="training", path="."):
+def read(dataset = "training", path = "."):
     """
     Python function for importing the MNIST data set.  It returns an iterator
     of 2-tuples with the first element being the label and the second element
@@ -48,7 +46,6 @@ def read(dataset="training", path="."):
     for i in range(len(lbl)):
         yield get_img(i)
 
-
 def show(image):
     """
     Render a given numpy.uint8 2D array of pixel data.
@@ -56,13 +53,12 @@ def show(image):
     from matplotlib import pyplot
     import matplotlib as mpl
     fig = pyplot.figure()
-    ax = fig.add_subplot(1, 1, 1)
+    ax = fig.add_subplot(1,1,1)
     imgplot = ax.imshow(image, cmap=mpl.cm.Greys)
     imgplot.set_interpolation('nearest')
     ax.xaxis.set_ticks_position('top')
     ax.yaxis.set_ticks_position('left')
     pyplot.show()
-
 
 # print(len(training_data))
 # label, pixels = training_data[765]
@@ -74,8 +70,8 @@ def show(image):
 
 nb_classes = 10
 
-training_data = list(read(dataset='training', path='/data'))
-testing_data = list(read(dataset='testing', path='/data'))
+training_data = list(read(dataset='training', path='../../data/mnist'))
+testing_data = list(read(dataset='testing', path='../../data/mnist'))
 
 y_train, x_train = zip(*training_data)
 y_test, x_test = zip(*testing_data)
@@ -85,27 +81,41 @@ y_train = np.asarray(y_train);
 x_test = np.asarray(x_test);
 y_test = np.asarray(y_test);
 
-x_train = x_train.reshape(60000, 1, 28, 28)
-x_test = x_test.reshape(10000, 1, 28, 28)
 x_train = x_train.astype('float32')
 x_test = x_test.astype('float32')
 x_train /= 255
 x_test /= 255
 
+half_test_x = int(len(x_test)/2)
+half_test_y = int(len(y_test)/2)
+
+x_validate = x_test[half_test_x:]
+x_test = x_test[:half_test_x]
+y_validate = y_test[half_test_y:]
+y_test = y_test[:half_test_y]
+
+x_train = x_train.reshape(60000, 1, 28, 28)
+x_test = x_test.reshape(5000, 1, 28, 28)
+x_validate = x_validate.reshape(5000, 1, 28, 28)
+
 print("Training matrix shape", x_train.shape)
 print("Testing matrix shape", x_test.shape)
+print("Validation matrix shape", x_validate.shape)
 
 X_train = x_train
-X_test = x_test
 Y_train = np_utils.to_categorical(y_train, nb_classes)
-Y_test = np_utils.to_categorical(y_test, nb_classes)
+
+X_test = x_test
+Y_test = np_utils.to_categorical(y_test[:half_test_y], nb_classes)
+
+X_validate = x_validate
+Y_validate = np_utils.to_categorical(y_validate, nb_classes)
 
 model = Sequential()
 model.add(Convolution2D(32, (3, 3), activation='relu', input_shape=(1, 28, 28)))
 model.add(Convolution2D(32, (3, 3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(MaxPooling2D(pool_size=(4, 4)))
 model.add(Dropout(0.25))
-
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.5))
@@ -121,7 +131,7 @@ model.fit(X_train, Y_train,
           batch_size=batch_size, epochs=5,
           verbose=1, validation_data=(X_test, Y_test))
 
-score = model.evaluate(X_test, Y_test, batch_size=batch_size, verbose=0)
+score = model.evaluate(X_validate, Y_validate, batch_size=batch_size, verbose=1)
 
 save_folder = './save/'
 model.save(os.path.join(save_folder, 'mnist_model.h5'))
@@ -129,6 +139,7 @@ model.save(os.path.join(save_folder, 'mnist_model.h5'))
 score_str = 'Test score: ' + str(score[0]) + '\n'
 acc_str = 'Test accuracy:' + str(score[1])
 
+print()
 print(score_str)
 print(acc_str)
 
@@ -136,3 +147,42 @@ text_file = open(save_folder + 'MNIST_Score.txt', "w+")
 text_file.write(score_str)
 text_file.write(acc_str)
 text_file.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

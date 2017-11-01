@@ -1,0 +1,38 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="topbar"><div>MNIST Demo</div></div>
+<div class="content">
+  <div class="inner">
+    <h2>Select Image</h2>
+    <div class="selectImage">
+        <input class="selectFile" type="file" accept="image/*" (change)="upload(file)" #file>
+        <button (click)="file.click()" class="upload ui icon button">
+          <i class="icon upload"></i>
+      </button>
+      <div class="address ui icon input loading">
+          <input type="text" placeholder="URL ...">
+          <!-- <i class="search icon"></i> -->
+      </div>
+    </div>
+      <button class="ui right labeled icon button recogButton" (click)="recognizeImage()">
+        <i class="icon unhide"></i>
+        Recognize Image
+      </button>
+    <img class="preview ui image" src="/images/wireframe/white-image.png">          
+    <div class="resultArea">
+        <!-- <div>
+            <div class="ui active centered inline loader">
+              <div class="ui text loader">Loading</div>
+            </div>
+        </div> -->
+      <div class="result">
+        <h2>Result</h2>
+        <div>Your image was recognized as:<span class="result-label">1</span></div>
+        <div class="class"></div>
+      </div>
+    </div>
+
+    <div class="taccuracy">The accouracy of this test is: 99,01% .</div>    
+</div>
+</div>
+<div class="footer"></div>
+
