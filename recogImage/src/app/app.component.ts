@@ -14,14 +14,25 @@ export class AppComponent {
   headers: Headers;
   title = 'app';
   file: any;
+  result: Observable<String>;
+  imageLink: String;
+  res: any;
+
+  // http://blog.otoro.net/assets/20160401/png/mnist_input_1.png
 
   constructor(private http: HttpClient) {
-
+    this.imageLink = 'http://www.euneighbours.eu/sites/default/files/2017-01/placeholder.png';
   }
 
   recognizeImage() {
-      this.http.get('http://edm.rek7.de/?url=http://blog.otoro.net/assets/20160401/png/mnist_input_3.png')
-      .subscribe(value => console.log(value));
+      const address = 'http://18.194.98.92'
+      let link = this.imageLink;
+      this.http.get('http://18.194.98.92/?url=' + link)
+      .subscribe(value => this.res = value);
+  }
+
+  getImage($url) {
+    this.imageLink = $url;
   }
 
   upload(event) {

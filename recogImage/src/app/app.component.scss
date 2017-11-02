@@ -48,7 +48,7 @@
     width: 700px;
     height: auto;
     background-color: #EEE;
-    padding: 5em;
+    padding: 3em;
     border-radius: 15px;
     position: relative;
 }
@@ -66,10 +66,9 @@
 
 .preview {
     margin: auto;
-    height: 300px;
-    width: 300px;
+    height: 150px;
+    width: 150px;
     background-color: #AAA;
-    height: 0;
     display: none;
 }
 
@@ -79,7 +78,7 @@
 }
 
 .resultArea {
-    padding-top: 1em;
+    padding-top: 0em;
     // display: none;
 }
 
