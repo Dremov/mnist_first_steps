@@ -11,14 +11,11 @@
 			<i class="icon upload"></i>
 		</button> -->
 			<div class="address ui icon input loading">
-				<input #urlInput type="text" placeholder="URL ...">
+				<input (keyup)="getImage($event)"  type="text" placeholder="URL ...">
 				<!-- <i class="search icon"></i> -->
 			</div>
-			<button (click)="getImage(urlInput.value)" class="get-image ui icon button">
-				<i class="icon arrow right"></i>
-			</button>
 		</div>
-		<img class="preview ui image" [src]="imageLink">
+		<img class="preview ui image" [src]="imageLink" (error)="setPlaceholderImage()">
 
 		<button class="ui right labeled icon button recogButton" (click)="recognizeImage()">
 			<i class="icon unhide"></i>

@@ -22,12 +22,13 @@ export class AppComponent {
   res: any;
   accuracy: any;
 
-  serverAddress = 'http://18.194.98.92:81';
+	serverAddress = 'http://18.194.98.92:81';
+	placeholder = 'http://www.euneighbours.eu/sites/default/files/2017-01/placeholder.png';
 
   // http://blog.otoro.net/assets/20160401/png/mnist_input_1.png
 
   constructor(private http: HttpClient) {
-		this.imageLink = 'http://www.euneighbours.eu/sites/default/files/2017-01/placeholder.png';
+		this.imageLink = this.placeholder;
 		this.getModelAccuracy();
   }
 
@@ -46,10 +47,14 @@ export class AppComponent {
 			let acc: number = +value;
 			this.accuracy = acc * 100;
 		});
-  }
+	}
 
-  getImage($url) {
-    this.imageLink = $url;
+	setPlaceholderImage() {
+		this.imageLink = this.placeholder;
+	}
+
+  getImage($event) {
+		this.imageLink = $event.target.value;
   }
 
   upload(event) {
