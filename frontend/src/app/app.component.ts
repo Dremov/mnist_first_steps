@@ -16,18 +16,19 @@ export class AppComponent {
   result: Observable<String>;
 	imageLink: String;
 
-	resultPresent: boolean = true;
+	resultPresent: boolean = false;
 
   file: any;
   res: any;
   accuracy: any;
 
-  serverAddress = 'http://18.194.98.92';
+  serverAddress = 'http://18.194.98.92:81';
 
   // http://blog.otoro.net/assets/20160401/png/mnist_input_1.png
 
   constructor(private http: HttpClient) {
-    this.imageLink = 'http://www.euneighbours.eu/sites/default/files/2017-01/placeholder.png';
+		this.imageLink = 'http://www.euneighbours.eu/sites/default/files/2017-01/placeholder.png';
+		this.getModelAccuracy();
   }
 
   recognizeImage() {
@@ -40,8 +41,11 @@ export class AppComponent {
   }
 
   getModelAccuracy() {
-    this.http.get(this.serverAddress + '/?accuracy=')
-    .subscribe(value => this.accuracy = value);
+    this.http.get(this.serverAddress + '/accuracy')
+    .subscribe(value => {
+			let acc: number = +value;
+			this.accuracy = acc * 100;
+		});
   }
 
   getImage($url) {
