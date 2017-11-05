@@ -15,6 +15,7 @@ Loosely inspired by http://abel.ee.ucla.edu/cvxopt/_downloads/mnist.py
 which is GPL licensed.
 """
 
+
 def read(dataset = "training", path = "."):
     """
     Python function for importing the MNIST data set.  It returns an iterator
@@ -23,11 +24,11 @@ def read(dataset = "training", path = "."):
     """
 
     if dataset is "training":
-        fname_img = os.path.join(path, 'train-images-idx3-ubyte')
-        fname_lbl = os.path.join(path, 'train-labels-idx1-ubyte')
+        fname_img = os.path.join(path, 'train-images.idx3-ubyte')
+        fname_lbl = os.path.join(path, 'train-labels.idx1-ubyte')
     elif dataset is "testing":
-        fname_img = os.path.join(path, 't10k-images-idx3-ubyte')
-        fname_lbl = os.path.join(path, 't10k-labels-idx1-ubyte')
+        fname_img = os.path.join(path, 't10k-images.idx3-ubyte')
+        fname_lbl = os.path.join(path, 't10k-labels.idx1-ubyte')
     else:
         print("dataset must be 'testing' or 'training'")
 
@@ -45,6 +46,7 @@ def read(dataset = "training", path = "."):
     # Create an iterator which returns each image in turn
     for i in range(len(lbl)):
         yield get_img(i)
+
 
 def show(image):
     """
@@ -66,12 +68,14 @@ def show(image):
 # print(pixels.shape)
 # show(pixels)
 
+
 """ Machine Learning Part """
 
 nb_classes = 10
 
-training_data = list(read(dataset='training', path='../../data/mnist'))
-testing_data = list(read(dataset='testing', path='../../data/mnist'))
+training_data = list(read(dataset='training', path='data'))
+testing_data = list(read(dataset='testing', path='data'))
+
 
 y_train, x_train = zip(*training_data)
 y_test, x_test = zip(*testing_data)
@@ -114,7 +118,7 @@ Y_validate = np_utils.to_categorical(y_validate, nb_classes)
 model = Sequential()
 model.add(Convolution2D(32, (3, 3), activation='relu', input_shape=(1, 28, 28)))
 model.add(Convolution2D(32, (3, 3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(4, 4)))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
@@ -128,7 +132,7 @@ model.compile(loss='categorical_crossentropy',
 
 batch_size = 128
 model.fit(X_train, Y_train,
-          batch_size=batch_size, epochs=5,
+          batch_size=batch_size, epochs=10,
           verbose=1, validation_data=(X_test, Y_test))
 
 score = model.evaluate(X_validate, Y_validate, batch_size=batch_size, verbose=1)
@@ -147,42 +151,3 @@ text_file = open(save_folder + 'MNIST_Score.txt', "w+")
 text_file.write(score_str)
 text_file.write(acc_str)
 text_file.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
