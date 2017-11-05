@@ -13,10 +13,13 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   headers: Headers;
   title = 'app';
-  file: any;
   result: Observable<String>;
   imageLink: String;
+  file: any;
   res: any;
+  accuracy: any;
+
+  serverAddress = 'http://edm.rek7.de';
 
   // http://blog.otoro.net/assets/20160401/png/mnist_input_1.png
 
@@ -25,10 +28,14 @@ export class AppComponent {
   }
 
   recognizeImage() {
-      const address = 'http://18.194.98.92'
       let link = this.imageLink;
-      this.http.get('http://18.194.98.92/?url=' + link)
+      this.http.get(this.serverAddress + '/?url=' + link)
       .subscribe(value => this.res = value);
+  }
+
+  getModelAccuracy() {
+    this.http.get(this.serverAddress + '/?accuracy=')
+    .subscribe(value => this.accuracy = value);
   }
 
   getImage($url) {
