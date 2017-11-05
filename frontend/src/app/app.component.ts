@@ -14,12 +14,15 @@ export class AppComponent {
   headers: Headers;
   title = 'app';
   result: Observable<String>;
-  imageLink: String;
+	imageLink: String;
+
+	resultPresent: boolean = true;
+
   file: any;
   res: any;
   accuracy: any;
 
-  serverAddress = 'http://edm.rek7.de';
+  serverAddress = 'http://18.194.98.92';
 
   // http://blog.otoro.net/assets/20160401/png/mnist_input_1.png
 
@@ -30,7 +33,10 @@ export class AppComponent {
   recognizeImage() {
       let link = this.imageLink;
       this.http.get(this.serverAddress + '/?url=' + link)
-      .subscribe(value => this.res = value);
+      .subscribe(value => {
+				this.res = value;
+				this.resultPresent = true;
+			});
   }
 
   getModelAccuracy() {
