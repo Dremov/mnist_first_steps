@@ -1,0 +1,54 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="topbar">
+	<div>MNIST Demo</div>
+</div>
+<div class="content">
+	<div class="inner">
+		<button *ngIf="false" (click)="drawSelect = !drawSelect" class="ui button sdSwitch">Select / Draw</button>
+		<div *ngIf="drawSelect" class="selectImage">
+			<h2 class="heading">Select Image</h2>
+			<input class="selectFile" type="file" accept="image/*" (change)="upload(file)" #file>
+			 <button (click)="file.click()" class="upload ui icon button">
+			<i class="icon upload"></i>
+		</button>
+			<div class="address ui icon input loading">
+				<input (keyup)="getImage($event)"  type="text" placeholder="URL ...">
+				<i *ngIf="false" class="search icon"></i>
+			</div>
+			<img *ngIf="!imageError" class="preview ui image" [src]="imageLink" (error)="imageLinkError()">
+
+		</div>
+		<div *ngIf="!drawSelect" class="drawImage">
+			<h2 class="heading">Draw Image</h2>
+			<app-draw #canvas></app-draw>
+			<img *ngIf="resultPresent" class="heatmap" [src]="heatmap">
+		</div>
+
+		<button *ngIf="drawSelect"  class="ui right labeled icon button recogButton" (click)="recognizeImage()">
+			<i class="icon unhide"></i>
+			Recognize Image
+		</button>
+		<button *ngIf="!drawSelect"  class="ui right labeled icon button recogButton" (click)="getCanvasImg()">
+				<i class="icon unhide"></i>
+				Recognize Image
+			</button>
+
+		<div *ngIf="resultPresent" class="resultArea">
+			<!-- <div>
+				<div class="ui active centered inline loader">
+				<div class="ui text loader">Loading</div>
+				</div>
+			</div> -->
+			<div class="result">
+				<h2>Result</h2>
+				<div>Your image was recognized as:
+					<span class="result-label">{{ res.prediction }}</span>
+				</div>
+				<div class="class"></div>
+			</div>
+		</div>
+
+		<div class="taccuracy">The accuracy of this model is:  <span>98.85%.</span></div>
+	</div>
+</div>
+<div class="footer"></div>

@@ -1,0 +1,139 @@
+:host {
+    width: 100vw;
+    height: 100vh;
+    font-size: 1.2em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.topbar {
+    height: 5%;
+    width: 100%;
+    background-color: #466160;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.heading {
+	margin-bottom: 0.7em;
+}
+
+.content {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+
+}
+
+.recogButton {
+    margin: 1em auto;
+    position: relative;
+    height: 3em;
+    // left: calc(50% - 7.5em);
+    background-color: #c6d6d5;
+    border-radius: 20px;
+}
+
+.recogButton:hover {
+    background-color: #cfdfde;
+}
+
+.selectFile {
+    display: none;
+}
+
+.inner {
+    width: auto;
+    height: auto;
+    background-color: #EEE;
+    padding: 3em 3em 3.5em 3em;
+    border-radius: 15px;
+	position: relative;
+	display: flex;
+    flex-direction: column;
+}
+
+.sdSwitch {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.footer {
+    height: 5%;
+    width: 100%;
+    background-color: #466160;
+}
+
+.selectImage {
+    width: 100%;
+    // display: flex;
+}
+
+.preview {
+    margin: 20px auto;
+    height: 150px;
+    width: auto;
+    background-color: #AAA;
+    display: none;
+}
+
+.address {
+
+    width: 500px;
+    flex: 1;
+}
+
+.resultArea {
+    padding-top: 0em;
+    // display: none;
+}
+
+.result {
+	margin: 0.5em 0;
+}
+
+h2 {
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.label {
+    margin-top: 0em;
+    line-height: 1.5em;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.result-label {
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+.taccuracy {
+    font-size: 0.85em;
+    margin: auto;
+    position: absolute;
+    bottom: 1.5em;
+    right: 1.5em;
+}
+
+app-draw {
+	float: left;
+}
+
+.heatmap {
+	margin-left: 1em;
+	width: 300px;
+	height: 300px;
+	background-color: black;
+}
+
+

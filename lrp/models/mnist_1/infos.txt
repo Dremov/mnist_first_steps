@@ -1,0 +1,7 @@
+Max Steps: 5001
+Batch Size: 100
+Test Every: 500
+Learning Rate: 0.01
+
+Training Accuracy: 0.9850
+Test Accuracy: 0.9930
