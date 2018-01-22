@@ -28,7 +28,7 @@ export class AppComponent {
   res: any;
   accuracy: any;
 
-	serverAddress = 'http://165.227.171.74:5000';
+	serverAddress = 'http://165.227.171.74:81';
 	placeholder = 'http://www.euneighbours.eu/sites/default/files/2017-01/placeholder.png';
 
   // http://blog.otoro.net/assets/20160401/png/mnist_input_1.png
@@ -58,6 +58,7 @@ export class AppComponent {
 			this.http.post(this.serverAddress + '/image', formData, {
 				headers: formHeaders })
       .subscribe(value => {
+				console.log(value);
 				this.res = value;
 				let base64img = "data:image/png;base64," + this.res.heatmap;
 				this.heatmap = this.sanitizer.bypassSecurityTrustResourceUrl(base64img);

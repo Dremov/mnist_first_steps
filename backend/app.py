@@ -44,5 +44,5 @@ def recieve_image():
     return jsonify({'success':True, 'prediction': str(prediction), 'heatmap': image_base64})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=81)
 
